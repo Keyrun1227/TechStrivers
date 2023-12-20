@@ -21,10 +21,13 @@
     }
     
     .header {
-      background-color: #333;
+      background-color: navy;
       padding: 10px;
       text-align: center;
       color: white;
+      text-transform: uppercase;
+      font-family: sans-serif;
+      font-weight: 600;
     }
     
     .chat-container {
@@ -59,13 +62,13 @@
     }
     
     .user-message .message-bubble {
-      background-color: #88c2d3;
+      background-color: #80defa;
       color: #333;
       align-self: flex-end; /* Align user messages to the right */
     }
     
     .bot-message .message-bubble {
-      background-color: #ccc;
+      background-color: #f3ebeb;
       color: #333;
       align-self: flex-start; /* Align bot messages to the left */
     }
@@ -126,9 +129,9 @@
 </head>
 <body>
   <div class="header">
-    <h1>Tech Strivers Railway Bot</h1>
+    <h1>Bharat Rail IVRS </h1>
   </div>
-  <div class="container-fluid">
+  <div class="container-fluid" style="height:60%">
     <div class="row">
       <div class="col-md-12">
         <div class="chat-container">
@@ -158,6 +161,14 @@
  
 
     <script>
+      function sendUserMessage() {
+        const userInput = document.getElementById("user-input").value.trim();
+        if (userInput !== "") {
+          displayUserMessage(userInput); // Display user's input in the chat
+          handleUserInput(userInput); // Process user's input
+          document.getElementById("user-input").value = ""; // Clear the input field
+        }
+      }
       // Function to simulate bot's welcome message when the page loads
       function simulateInitialBotMessage() {
         const initialMessage = "Welcome to the Indian Railway IVRS system!";
