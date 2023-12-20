@@ -1,0 +1,74 @@
+{
+  "stations": [
+    {
+      "stationName": "New Delhi",
+      "stationCode": "NDLS",
+      "numberOfPlatforms": 16,
+      "zone": "Northern",
+      "stationType": "Terminal"
+    },
+    {
+      "stationName": "Mumbai Central",
+      "stationCode": "BCT",
+      "numberOfPlatforms": 8,
+      "zone": "Western",
+      "stationType": "Terminal"
+    },
+    {
+      "stationName": "Chennai Central",
+      "stationCode": "MAS",
+      "numberOfPlatforms": 17,
+      "zone": "Southern",
+      "stationType": "Terminal"
+    },
+    {
+      "stationName": "Howrah Junction",
+      "stationCode": "HWH",
+      "numberOfPlatforms": 23,
+      "zone": "Eastern",
+      "stationType": "Terminal"
+    },
+    {
+      "stationName": "Bengaluru City",
+      "stationCode": "SBC",
+      "numberOfPlatforms": 10,
+      "zone": "South Western",
+      "stationType": "Regular"
+    },
+    {
+      "stationName": "Kolkata",
+      "stationCode": "KOAA",
+      "numberOfPlatforms": 23,
+      "zone": "Eastern",
+      "stationType": "Terminal"
+    },
+    {
+      "stationName": "Pune Junction",
+      "stationCode": "PUNE",
+      "numberOfPlatforms": 6,
+      "zone": "Central",
+      "stationType": "Regular"
+    },
+    {
+      "stationName": "Hyderabad Deccan",
+      "stationCode": "HYB",
+      "numberOfPlatforms": 10,
+      "zone": "South Central",
+      "stationType": "Terminal"
+    },
+    {
+      "stationName": "Ahmedabad Junction",
+      "stationCode": "ADI",
+      "numberOfPlatforms": 12,
+      "zone": "Western",
+      "stationType": "Terminal"
+    },
+    {
+      "stationName": "Jaipur Junction",
+      "stationCode": "JP",
+      "numberOfPlatforms": 8,
+      "zone": "North Western",
+      "stationType": "Active"
+    }
+  ]
+}

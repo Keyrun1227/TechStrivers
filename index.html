@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Tech Strivers Railway Bot</title>
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+  />
+  <link
+    rel="stylesheet"
+    href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+  />
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+    }
+    
+    .header {
+      background-color: #333;
+      padding: 10px;
+      text-align: center;
+      color: white;
+    }
+    
+    .chat-container {
+      width: 100%;
+      height: 100vh;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      background-color: #fff;
+    }
+    
+    .chat-box {
+      flex: 1;
+      overflow-y: scroll;
+      padding: 20px;
+      margin-bottom: 10px;
+    }
+    
+    .user-message,
+    .bot-message {
+      margin-bottom: 10px;
+      display: flex;
+    }
+    
+    .user-message .message-bubble,
+    .bot-message .message-bubble {
+      padding: 10px 15px;
+      border-radius: 20px;
+      max-width: 70%;
+      word-wrap: break-word;
+      box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+    }
+    
+    .user-message .message-bubble {
+      background-color: #88c2d3;
+      color: #333;
+      align-self: flex-end; /* Align user messages to the right */
+    }
+    
+    .bot-message .message-bubble {
+      background-color: #ccc;
+      color: #333;
+      align-self: flex-start; /* Align bot messages to the left */
+    }
+    
+    .input-container {
+      display: flex;
+      flex-direction: column;
+      padding: 10px;
+      background-color: #fff;
+      border-top: 1px solid #ccc;
+    }
+    
+    input[type="text"] {
+      padding: 10px;
+      margin-bottom: 10px;
+      border: none;
+      border-radius: 20px;
+      outline: none;
+      background-color: #f5f5f5;
+      box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+    }
+    
+    button {
+      padding: 10px 20px;
+      margin-bottom: 10px;
+      font-size: 16px;
+    }
+    
+    .speech-btn {
+      padding: 12px;
+      margin-left: 5px;
+    }
+    
+    @media only screen and (max-width: 768px) {
+      .user-message .message-bubble,
+      .bot-message .message-bubble {
+        max-width: 90%;
+        font-size: 14px;
+      }
+      .input-container {
+        padding: 5px;
+      }
+      input[type="text"] {
+        padding: 8px;
+        font-size: 14px;
+      }
+      button {
+        padding: 8px 16px;
+        font-size: 14px;
+      }
+      .speech-btn {
+        padding: 10px;
+        margin-left: 5px;
+      }
+    }
+    
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>Tech Strivers Railway Bot</h1>
+  </div>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="chat-container">
+          <div class="chat-box" id="chat-box"></div>
+          <div class="input-container">
+            <input
+              type="text"
+              id="user-input"
+              placeholder="Train Number / Name"
+              class="form-control"
+            />
+            <div class="btn-container">
+              <button
+                id="btnn"
+                onclick="sendUserMessage()"
+                class="btn btn-success"
+              >
+                Send
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+ 
+
+    <script>
+      // Function to simulate bot's welcome message when the page loads
+      function simulateInitialBotMessage() {
+        const initialMessage = "Welcome to the Indian Railway IVRS system!";
+        displayBotMessage(initialMessage);
+      }
+
+      // Function to simulate the bot's second message with service options
+      function simulateServiceOptions() {
+        const serviceMessage =
+          "These are the services we provide:\n1. Train Information\n2. Station Information\n3. PNR Information\n4.Exit\nPlease choose any one of the services by typing a number from 1 to 5.";
+        displayBotMessage(serviceMessage);
+      }
+
+      let serviceFlag = 0;
+
+      function handleUserInput(userInput) {
+        const selectedService = userInput;
+
+        // Display user's input as a message in the chat
+        displayUserMessage(userInput);
+        if (serviceFlag == 0) {
+          switch (selectedService) {
+            case "1":
+              displayBotMessage("You have selected Train Information service.");
+              displayBotMessage("Please enter the train name.");
+              serviceFlag = 1;
+              break;
+            case "2":
+              displayBotMessage("You've selected Station Information service.");
+              displayBotMessage("Please enter the station name.");
+              serviceFlag = 2;
+              break;
+            case "3":
+              displayBotMessage("You've selected PNR Information service.");
+              displayBotMessage("Please enter the PNR number.");
+              serviceFlag = 3;
+              break;
+            case "4":
+              displayBotMessage(
+                "Glad to assist! Come back if you have any queries"
+              );
+              serviceFlag = 4;
+              break;
+            default:
+              displayBotMessage(
+                "Invalid input. Please choose a number from 1 to 4."
+              );
+              break;
+          }
+        } else {
+          if (serviceFlag == 1) {
+            checkTrainData(selectedService);
+            serviceFlag = 0;
+          } else if (serviceFlag == 2) {
+            checkStationData(selectedService);
+            serviceFlag = 0;
+          } else if (serviceFlag == 3) {
+            checkPnrData(selectedService);
+            serviceFlag = 0;
+          }
+        }
+      }
+
+      async function fetchTrainsData() {
+        try {
+          const response = await fetch("trains.json");
+          return await response.json();
+        } catch (error) {
+          console.error("Error fetching train data:", error);
+          return null;
+        }
+      }
+
+      async function fetchStationsData() {
+        try {
+          const response = await fetch("stations.json");
+          return await response.json();
+        } catch (error) {
+          console.error("Error fetching station data:", error);
+          return null;
+        }
+      }
+
+      async function fetchPnrData() {
+        try {
+          const response = await fetch("pnr.json");
+          return await response.json();
+        } catch (error) {
+          console.error("Error fetching PNR data:", error);
+          return null;
+        }
+      }
+
+      async function checkPnrData(pnrInput) {
+        try {
+          const passengerData = await fetchPnrData();
+
+          if (passengerData) {
+            const foundPassenger = passengerData.find(
+              (passenger) => passenger.pnr_num === pnrInput
+            );
+
+            if (foundPassenger) {
+              const {
+                full_name,
+                pnr_num,
+                train_name,
+                date,
+                num_tickets,
+                platform_no,
+              } = foundPassenger;
+
+              const passengerInfoMessage = `
+          Passenger Name: ${full_name}
+          PNR Number: ${pnr_num}
+          Train Name: ${train_name}
+          Date: ${date}
+          Number of Tickets: ${num_tickets}
+          Platform Number: ${platform_no}
+        `;
+
+              displayBotMessage("Passenger information found:");
+              displayBotMessage(passengerInfoMessage);
+            } else {
+              console.log(
+                "Passenger information not found for the entered PNR number."
+              );
+            }
+          } else {
+            console.log("Error fetching PNR data. Please try again later.");
+          }
+        } catch (error) {
+          console.error("Error while checking PNR data:", error);
+        }
+      }
+
+      async function checkTrainData(userInput) {
+        const userInputString =
+          typeof userInput === "string" ? userInput : String(userInput);
+
+        try {
+          const trainsData = await fetchTrainsData();
+
+          if (trainsData) {
+            const foundTrain = trainsData.trains.find(
+              (train) =>
+                train.trainNumber === userInputString ||
+                train.trainName.toLowerCase() === userInputString.toLowerCase()
+            );
+
+            if (foundTrain) {
+              const trainInfoMessage = `
+          Train Name: ${foundTrain.trainName}
+          Train Number: ${foundTrain.trainNumber}
+          Available Classes: ${foundTrain.availableClasses.join(", ")}
+          Pantry Services: ${
+            foundTrain.pantryServices ? "Available" : "Not Available"
+          }
+          From Station Code: ${foundTrain.fromStationCode}
+          To Station Code: ${foundTrain.toStationCode}
+        `;
+              displayBotMessage("Train information found:");
+              displayBotMessage(trainInfoMessage);
+            } else {
+              displayBotMessage(
+                "Train information not found for the entered train number or name."
+              );
+            }
+          } else {
+            displayBotMessage(
+              "Error fetching train data. Please try again later."
+            );
+          }
+          simulateServiceOptions();
+        } catch (error) {
+          console.error("Error while checking train data:", error);
+          displayBotMessage(
+            "Error fetching train data. Please try again later."
+          );
+        }
+      }
+
+      async function checkStationData(userInput) {
+        console.log(userInput);
+        const userInputString =
+          typeof userInput === "string" ? userInput : String(userInput);
+
+        try {
+          const stationsData = await fetchStationsData();
+
+          if (stationsData) {
+            const foundStation = stationsData.stations.find(
+              (station) =>
+                station.stationCode.toLowerCase() ===
+                  userInputString.toLowerCase() ||
+                station.stationName.toLowerCase() ===
+                  userInputString.toLowerCase()
+            );
+
+            if (foundStation) {
+              const stationInfoMessage = `
+          Station Name: ${foundStation.stationName}
+          Station Code: ${foundStation.stationCode}
+          Number of Platforms: ${foundStation.numberOfPlatforms}
+          Zone: ${foundStation.zone}
+          Station Type: ${foundStation.stationType}
+        `;
+              displayBotMessage("Station information found:");
+              displayBotMessage(stationInfoMessage);
+            } else {
+              displayBotMessage(
+                "Station information not found for the entered station code or name."
+              );
+            }
+          } else {
+            displayBotMessage(
+              "Error fetching station data. Please try again later."
+            );
+          }
+          simulateServiceOptions();
+        } catch (error) {
+          console.error("Error while checking station data:", error);
+          displayBotMessage(
+            "Error fetching station data. Please try again later."
+          );
+        }
+      }
+  // Trigger the bot's initial welcome message when the page finishes loading
+  window.addEventListener("load", () => {
+    simulateInitialBotMessage();
+    setTimeout(simulateServiceOptions, 1500); // Delay showing service options after initial message (adjust timing as needed)
+  });
+      // Function to display user's message in the chat
+     // Function to display user's message in the chat
+      function displayUserMessage(message) {
+        const chatBox = document.getElementById("chat-box");
+        const userMessageDiv = document.createElement("div");
+        userMessageDiv.className = "user-message";
+        const messageBubble = document.createElement("div");
+        messageBubble.className = "message-bubble";
+        messageBubble.textContent = message;
+        userMessageDiv.appendChild(messageBubble);
+        chatBox.appendChild(userMessageDiv);
+        scrollToBottom(chatBox);
+      }
+
+      // Function to display bot's message in the chat
+      function displayBotMessage(message) {
+        const chatBox = document.getElementById("chat-box");
+        const botMessageDiv = document.createElement("div");
+        botMessageDiv.className = "bot-message";
+        const messageBubble = document.createElement("div");
+        messageBubble.className = "message-bubble";
+        messageBubble.textContent = message;
+        botMessageDiv.appendChild(messageBubble);
+        chatBox.appendChild(botMessageDiv);
+        scrollToBottom(chatBox);
+
+        // Position bot's message on the left side
+        botMessageDiv.style.alignSelf = "flex-start";
+      }
+
+// Add a style to position user's message on the right side
+
+      async function fetchTrainsData() {
+        const response = await fetch("trains.json");
+        return await response.json();
+      }
+
+      // Function to scroll to the bottom of the chat box
+      function scrollToBottom(chatBox) {
+        chatBox.scrollTop = chatBox.scrollHeight;
+      }
+
+      document
+        .getElementById("user-input")
+        .addEventListener("keydown", function (event) {
+          if (event.key === "Enter") {
+            const userInput = document
+              .getElementById("user-input")
+              .value.trim();
+            if (userInput !== "") {
+              handleUserInput(userInput);
+              document.getElementById("user-input").value = "";
+            }
+          }
+        });
+    </script>
+  </body>
+</html>

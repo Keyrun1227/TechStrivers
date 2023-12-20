@@ -1,0 +1,90 @@
+[
+    {
+      "age": "29",
+      "date": "2023-12-21",
+      "email": "projects1228@gmail.com",
+      "full_name": "Keyrun Sai",
+      "gender": "male",
+      "language": "ta",
+      "num_tickets": "3",
+      "number": "+918522978146",
+      "platform_no": 3,
+      "pnr_num": "1952397778",
+      "train_name": "12737 - GOUTAMI EXPRESS"
+    },
+    {
+      "age": "20",
+      "date": "2023-12-23",
+      "email": "20341A0541@gmrit.edu.in",
+      "full_name": "SHYAM",
+      "gender": "male",
+      "language": "hi",
+      "num_tickets": "5",
+      "number": "+918522978146",
+      "platform_no": 1,
+      "pnr_num": "5350496443",
+      "train_name": "16590 - RANI CHENNAMMA"
+    },
+    {
+      "age": "19",
+      "date": "2023-12-29",
+      "email": "sahithigmrit@gmail.com",
+      "full_name": "Sahithi",
+      "gender": "female",
+      "language": "mr",
+      "num_tickets": "3",
+      "number": "+918522978146",
+      "platform_no": 2,
+      "pnr_num": "2041993685",
+      "train_name": "12737 - GOUTAMI EXPRESS"
+    },
+    {
+      "age": "20",
+      "date": "2023-12-29",
+      "email": "bhavyasaicheruku3@gmail.com",
+      "full_name": "bhavya",
+      "gender": "female",
+      "language": "ru",
+      "num_tickets": "4",
+      "number": "+918522978146",
+      "platform_no": 6,
+      "pnr_num": "9704868389",
+      "train_name": "12737 - GOUTAMI EXPRESS"
+    },
+    {
+      "age": "20",
+      "date": "2023-12-29",
+      "email": "lavetikomali@gmail.com",
+      "full_name": "Laveti Komali",
+      "gender": "female",
+      "language": "hi",
+      "num_tickets": "5",
+      "number": "+918522978146",
+      "pnr_num": "9098623422",
+      "train_name": "12737 - GOUTAMI EXPRESS"
+    },
+    {
+      "age": "40",
+      "date": "2024-01-03",
+      "email": "sankarbhavani038@gmail.com",
+      "full_name": "Shankar",
+      "gender": "male",
+      "language": "te",
+      "num_tickets": "5",
+      "number": "+918522978146",
+      "pnr_num": "2487822716",
+      "train_name": "12737 - GOUTAMI EXPRESS"
+    },
+    {
+      "age": "23",
+      "date": "2023-12-31",
+      "email": "likashgunisetti@gmail.com",
+      "full_name": "Likash",
+      "gender": "male",
+      "language": "bn",
+      "num_tickets": "5",
+      "number": "+918522978146",
+      "pnr_num": "9422070454",
+      "train_name": "12737 - GOUTAMI EXPRESS"
+    }
+  ]

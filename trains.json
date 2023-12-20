@@ -1,0 +1,84 @@
+{
+  "trains": [
+    {
+      "trainName": "Rajdhani Express",
+      "trainNumber": "12345",
+      "availableClasses": ["AC First Class", "AC 2 Tier", "AC 3 Tier"],
+      "pantryServices": true,
+      "fromStationCode": "NDLS",
+      "toStationCode": "BCT"
+    },
+    {
+      "trainName": "Shatabdi Express",
+      "trainNumber": "54321",
+      "availableClasses": ["AC Chair Car", "Executive Chair Car"],
+      "pantryServices": true,
+      "fromStationCode": "MAS",
+      "toStationCode": "SBC"
+    },
+    {
+      "trainName": "Duronto Express",
+      "trainNumber": "98765",
+      "availableClasses": ["AC 1 Tier", "Sleeper Class"],
+      "pantryServices": false,
+      "fromStationCode": "HWH",
+      "toStationCode": "NDLS"
+    },
+    {
+      "trainName": "Gatimaan Express",
+      "trainNumber": "67890",
+      "availableClasses": ["AC Chair Car"],
+      "pantryServices": true,
+      "fromStationCode": "NDLS",
+      "toStationCode": "AGC"
+    },
+    {
+      "trainName": "Tejas Express",
+      "trainNumber": "13579",
+      "availableClasses": ["AC Chair Car", "Sleeper Class"],
+      "pantryServices": true,
+      "fromStationCode": "CSTM",
+      "toStationCode": "NDLS"
+    },
+    {
+      "trainName": "Double Decker Express",
+      "trainNumber": "24680",
+      "availableClasses": ["AC Chair Car"],
+      "pantryServices": false,
+      "fromStationCode": "MAS",
+      "toStationCode": "BZA"
+    },
+    {
+      "trainName": "Jan Shatabdi Express",
+      "trainNumber": "97531",
+      "availableClasses": ["AC Chair Car", "Sleeper Class"],
+      "pantryServices": false,
+      "fromStationCode": "HWH",
+      "toStationCode": "MYS"
+    },
+    {
+      "trainName": "Garib Rath Express",
+      "trainNumber": "86420",
+      "availableClasses": ["AC 3 Tier", "Sleeper Class"],
+      "pantryServices": false,
+      "fromStationCode": "NDLS",
+      "toStationCode": "LKO"
+    },
+    {
+      "trainName": "Humsafar Express",
+      "trainNumber": "75309",
+      "availableClasses": ["AC 2 Tier", "AC 3 Tier"],
+      "pantryServices": true,
+      "fromStationCode": "PNBE",
+      "toStationCode": "SC"
+    },
+    {
+      "trainName": "Antyodaya Express",
+      "trainNumber": "64257",
+      "availableClasses": ["General Class"],
+      "pantryServices": false,
+      "fromStationCode": "MFP",
+      "toStationCode": "ADI"
+    }
+  ]
+}
